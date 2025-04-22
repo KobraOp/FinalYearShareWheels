@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ShareWheelsNewUi</string>
+    <string name="continue_with_google">Continue With Google</string>
+    <string name="searching_ride_got_you_bro">Searching Ride ? Got you bro</string>
+    <string name="by_continuing_you_are_agreeing_with_sharewheels_and_ride_shield_terms_and_condition">By continuing you are agreeing with sharewheels and ride shield Terms and Condition</string>
+    <string name="continue_with_phone">Continue With Phone</string>
+</resources>
