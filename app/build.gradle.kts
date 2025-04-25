@@ -13,6 +13,7 @@ if (secretPropertiesFile.exists()) {
 
 // Debugging output (shows in Gradle console)
 println("🔹 Loaded WEB_CLIENT: ${secretProperties["WEB_CLIENT"] ?: "NOT FOUND"}")
+println("🔹 Loaded WEATHER_API: ${secretProperties["WEATHER_API"] ?: "NOT FOUND"}")
 
 plugins {
     alias(libs.plugins.android.application)
@@ -33,6 +34,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "WEB_CLIENT", "\"${secretProperties["WEB_CLIENT"] ?: ""}\"")
+        buildConfigField("String", "WEATHER_API", "\"${secretProperties["WEATHER_API"] ?: ""}\"")
     }
 
     buildTypes {
@@ -56,6 +58,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.play.services.location)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
     implementation(libs.firebase.analytics)

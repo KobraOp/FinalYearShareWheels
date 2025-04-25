@@ -1,6 +1,7 @@
 package com.android.sharewheelsnewui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
@@ -17,6 +18,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -59,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
                 if(account != null){
                     Intent navigateToMain = new Intent(this,
                             HomePage.class);
+                    String ImageStringUrl = Objects.requireNonNull(account.getPhotoUrl()).toString();
+                    navigateToMain.putExtra("name",account.getDisplayName());
+                    navigateToMain.putExtra("photo",ImageStringUrl);
                     pop = new PopUpDesign(MainActivity.this,
                             R.raw.success);
                     pop.showAndSwitchIntent(MainActivity.this,
@@ -80,7 +86,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null){
+            String ImageStringUrl = Objects.requireNonNull(account.getPhotoUrl()).toString();
             Intent navigate = new Intent(getApplicationContext(), HomePage.class);
+            navigate.putExtra("name",account.getDisplayName());
+            navigate.putExtra("photo", ImageStringUrl);
             startActivity(navigate);
         }
     }
